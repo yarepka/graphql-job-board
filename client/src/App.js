@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { isLoggedIn, logout } from './auth';
 import { CompanyDetail } from './CompanyDetail';
 import { LoginForm } from './LoginForm';
@@ -28,7 +28,7 @@ export class App extends Component {
   render() {
     const {loggedIn} = this.state;
     return (
-      <Router ref={(router) => this.router = router}>
+      <BrowserRouter ref={(router) => this.router = router}>
         <div>
           <NavBar loggedIn={loggedIn} onLogout={this.handleLogout.bind(this)} />
           <section className="section">
@@ -43,7 +43,7 @@ export class App extends Component {
             </div>
           </section>
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
