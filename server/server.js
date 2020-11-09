@@ -25,7 +25,12 @@ app.use(
 const typeDefs = gql(fs.readFileSync('./schema.graphql', { encoding: 'utf8' }));
 // contains resolver functions
 const resolvers = require('./resolvers.js');
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const context = ({ req }) => ({ user: req.user && db.users.get(req.user.sub) });
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context,
+});
 // connect apollo server to express server
 apolloServer.applyMiddleware({ app, path: '/graphql' });
 

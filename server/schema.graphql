@@ -58,7 +58,6 @@ type Job {
 
 # This is how the input arg for createJob() will look like
 input CreateJobInput {
-  companyId: ID
   title: String
   description: String
 }
