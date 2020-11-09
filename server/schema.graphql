@@ -1,3 +1,4 @@
+# for quering data
 type Query {
   # query {
   #   job(id: "rJKAbDd_z") {
@@ -19,6 +20,28 @@ type Query {
   companies: [Company]
 }
 
+# for mutating(modifying) data
+type Mutation {
+  # Query:
+  # mutation CreateJob($input: CreateJobInput) {
+  #   job:createJob(input: $input) {
+  #     id, title, company {
+  #       id, name
+  #     }
+  #   }
+  # }
+
+  # Query Variables:
+  # {
+  #   "input": {
+  #     "companyId": "SJV0-wdOM",
+  #     "title": "Ok Job",
+  #     "description": "Ok Job Description"
+  #   }
+  # }
+  createJob(input: CreateJobInput): Job
+}
+
 type Company {
   id: ID!
   name: String
@@ -30,5 +53,12 @@ type Job {
   id: ID!
   title: String
   company: Company
+  description: String
+}
+
+# This is how the input arg for createJob() will look like
+input CreateJobInput {
+  companyId: ID
+  title: String
   description: String
 }

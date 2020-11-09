@@ -7,6 +7,13 @@ const Query = {
   companies: () => db.companies.list(),
 };
 
+const Mutation = {
+  createJob: (root, { input }) => {
+    const id = db.jobs.create(input);
+    return db.jobs.get(id);
+  },
+};
+
 const Job = {
   company: (job) => db.companies.get(job.companyId),
 };
@@ -18,6 +25,7 @@ const Company = {
 
 module.exports = {
   Query,
+  Mutation,
   Job,
   Company,
 };
